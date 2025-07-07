@@ -9,11 +9,24 @@ FROM node:lts-alpine AS builder
 # - build-base: Herramientas esenciales de construcción (como gcc, g++), necesarias si tu proyecto Node.js tiene dependencias nativas que necesitan ser compiladas.
 # - libstdc++: Librería estándar de C++, también requerida por el controlador.
 RUN apk add --no-cache \
+    unixODBC-dev \
     curl \
-    unixodbc-dev \
-    openssl-dev \
-    build-base \
-    libstdc++
+    gnupg \
+    libstdc++ \
+    krb5-libs \
+    libgssapi_krb5 \
+    libssl3 \
+    openssl-dev
+
+# Download and install Microsoft ODBC Driver 17 for SQL Server
+# This involves adding Microsoft's repository and then installing the driver
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apk/keys/microsoft.asc.gpg \
+    && echo "https://packages.microsoft.com/alpine/3.16/prod" >> /etc/apk/repositories \
+    && apk add --no-cache msodbcsql17 \
+    && apk add --no-cache mssql-tools
+
+# Set environment variable for SQL Server tools path
+ENV PATH="/opt/mssql-tools/bin:$PATH"
 
 
 # Establece el directorio de trabajo dentro del contenedor.
