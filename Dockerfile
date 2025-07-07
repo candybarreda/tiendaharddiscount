@@ -15,23 +15,29 @@ RUN apk add --no-cache \
     build-base \
     libstdc++
 
+# update data from apt-get repositories
+RUN apt-get update && \
+    apt-get -y install unzip && \
+    apt-get -y install curl && \
+    apt-get -y install gnupg && \
+    apt-get -y install wget
+
 # Descarga e instala el controlador ODBC de Microsoft para SQL Server.
 # IMPORTANTE: La URL y la versión del paquete `msodbcsql17` pueden cambiar.
 # Te recomiendo visitar la documentación oficial de Microsoft para obtener la última versión estable y la URL correcta:
 # https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/install-microsoft-odbc-driver-sql-server-alpine-linux?view=sql-server-ver16
 # La versión y URL a continuación son ejemplos y deben ser verificadas.
-ARG MSODBCSQL_VERSION="17.10.3.1-1" # Versión de ejemplo, verifica la más reciente en el sitio de Microsoft
-ARG MSODBCSQL_URL="https://download.microsoft.com/download/e/4/d/e4d9241b-4179-4560-a292-23c21a1f074d/msodbcsql17_${MSODBCSQL_VERSION}_amd64.tar.gz"
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
+    curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list && \
+    apt-get update && \
+    ACCEPT_EULA=Y apt-get install -y msodbcsql18 && \
+    ACCEPT_EULA=Y apt-get install -y mssql-tools18 && \
+    echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc && \
+    apt-get install -y unixodbc-dev && \
+    apt-get install -y libgssapi-krb5-2
 
-# Descarga el archivo tar.gz, lo extrae y ejecuta el script de instalación.
-# `--accept-eula` es crucial para aceptar los términos de la licencia.
-# Luego, se limpian los archivos temporales para reducir el tamaño final de la imagen.
-RUN curl -fSL "$MSODBCSQL_URL" -o msodbcsql.tar.gz \
-    && tar -xzf msodbcsql.tar.gz \
-    && cd msodbcsql-${MSODBCSQL_VERSION} \
-    && /bin/sh install.sh install --accept-eula \
-    && rm -rf /var/cache/apk/* \
-    && rm /msodbcsql.tar.gz /msodbcsql-${MSODBCSQL_VERSION} -r # Limpia los archivos descargados y el directorio extraído
+ENV PATH="$PATH:/opt/mssql-tools18/bin"
+
 
 # Establece el directorio de trabajo dentro del contenedor.
 WORKDIR /app
