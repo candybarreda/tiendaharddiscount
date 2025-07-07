@@ -1,0 +1,1167 @@
+/* Importar fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;700&display=swap');
+
+/* Variables CSS para una paleta de colores moderna para electrónica */
+:root {
+    --primary-color: #007bff; /* Azul brillante, típico de tecnología */
+    --primary-dark: #0056b3; /* Tono más oscuro de azul para hover */
+    --secondary-color: #6c757d; /* Gris para elementos secundarios */
+    --secondary-dark: #5a6268; /* Tono más oscuro de gris */
+    --accent-color: #00c4cc; /* Un turquesa vibrante como acento */
+    --accent-dark: #008f96; /* Tono más oscuro de acento */
+    --background-light: #f4f6f9; /* Fondo muy claro, casi blanco */
+    --background-dark: #212529; /* Gris muy oscuro para encabezados/pies de página */
+    --text-dark: #343a40; /* Texto principal oscuro */
+    --text-light: #ffffff; /* Texto claro */
+    --border-color: #e9ecef; /* Bordes suaves */
+    --card-bg: #ffffff; /* Fondo de tarjetas, blanco puro */
+    --error-color: #dc3545; /* Rojo para mensajes de error */
+    --success-color: #28a745; /* Verde para mensajes de éxito */
+    --info-color: #17a2b8; /* Azul claro para info */
+    --shadow-light: rgba(0, 0, 0, 0.08); /* Sombra ligera */
+    --shadow-medium: rgba(0, 0, 0, 0.15); /* Sombra media */
+    --shadow-strong: rgba(0, 0, 0, 0.2); /* Sombra fuerte */
+}
+
+/* Reset CSS básico y estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif; /* Más legible para cuerpo de texto */
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--background-light); /* Fondo claro y suave */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif; /* Títulos y encabezados con fuente más impactante */
+    color: var(--text-dark);
+    margin-bottom: 0.5em;
+}
+
+.container {
+    width: 90%;
+    max-width: 1300px; /* Un poco más ancho para más contenido */
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* --- Header --- */
+.main-header {
+    background-color: var(--background-dark); /* Header oscuro y elegante */
+    color: var(--text-light);
+    padding: 15px 0;
+    box-shadow: 0 4px 10px var(--shadow-light); /* Sombra más pronunciada */
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 2rem; /* Logo más grande */
+    margin-right: 20px;
+    letter-spacing: -0.5px; /* Pequeño ajuste para mejor lectura */
+}
+
+.logo a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo a:hover {
+    color: var(--primary-color);
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Más espacio entre elementos de navegación */
+}
+
+.main-nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, transform 0.2s ease;
+    display: flex; /* Para alinear iconos y texto */
+    align-items: center;
+    gap: 8px; /* Espacio entre icono y texto */
+}
+
+.main-nav a:hover,
+.main-nav a.active { /* Clase active para la sección actual (JS) */
+    color: var(--accent-color); /* Acento vibrante al pasar el mouse */
+    transform: translateY(-2px); /* Pequeño efecto al pasar el mouse */
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* --- Botones Generales --- */
+.btn {
+    padding: 12px 25px; /* Más padding para botones */
+    border: none;
+    border-radius: 8px; /* Bordes más redondeados */
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600; /* Texto más grueso */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    display: inline-flex; /* Flexbox para alinear contenido (e.g., texto e ícono) */
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Espacio si el botón tiene icono */
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2); /* Sombra sutil */
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px); /* Efecto de "levantamiento" */
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-dark);
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background-color: var(--error-color);
+    color: var(--text-light);
+}
+
+.btn-danger:hover {
+    background-color: #c82333; /* Un tono más oscuro */
+    transform: translateY(-2px);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none; /* Sin efecto al pasar el mouse */
+    box-shadow: none;
+}
+
+/* --- Main Content --- */
+main {
+    flex-grow: 1;
+    padding-top: 40px; /* Más espacio superior */
+    padding-bottom: 60px; /* Más espacio inferior */
+}
+
+.content-section {
+    display: none;
+    padding: 30px 0; /* Más padding interno en secciones */
+    margin-bottom: 30px; /* Más espacio entre secciones */
+    background-color: var(--card-bg); /* Fondo blanco para secciones */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 6px 15px var(--shadow-light); /* Sombra para resaltar secciones */
+}
+
+.content-section.active {
+    display: block;
+}
+
+h2 {
+    font-size: 2.5rem; /* Títulos de sección más grandes */
+    color: var(--primary-color); /* Color principal para títulos */
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px; /* Espacio para el subrayado */
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px; /* Subrayado corto */
+    height: 4px;
+    background-color: var(--accent-color); /* Color de acento para el subrayado */
+    margin: 10px auto 0; /* Centrar subrayado */
+    border-radius: 2px;
+}
+
+/* Hero Banner */
+.hero-banner {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%), 
+                url('https://images.unsplash.com/photo-1510519155797-fc197c355c3c?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+    background-blend-mode: multiply; /* Mezcla el gradiente con la imagen */
+    color: var(--text-light);
+    text-align: center;
+    padding: 100px 30px; /* Más padding para un look más "premium" */
+    border-radius: 12px; /* Bordes más redondeados */
+    margin-bottom: 50px;
+    box-shadow: 0 8px 20px var(--shadow-medium); /* Sombra más fuerte */
+    position: relative;
+    overflow: hidden; /* Para asegurar que el contenido no se desborde */
+}
+
+.hero-banner::before { /* Eliminar la superposición extra si se usa un degradado */
+    content: none;
+}
+
+.hero-banner h2 {
+    font-size: 3.8rem; /* Título principal más grande */
+    margin-bottom: 15px;
+    color: var(--text-light); /* Asegurar que el texto del hero sea blanco */
+    text-shadow: 2px 2px 4px var(--shadow-medium); /* Sombra para el texto */
+}
+
+.hero-banner p {
+    font-size: 1.4rem; /* Párrafo más grande */
+    margin-bottom: 40px;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-banner .btn-primary {
+    background-color: var(--accent-color); /* Botón de acento en el hero */
+    color: var(--text-dark); /* Texto oscuro para contraste */
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    border-radius: 50px; /* Botón píldora */
+    box-shadow: 0 4px 8px rgba(0, 196, 204, 0.4);
+}
+.hero-banner .btn-primary:hover {
+    background-color: var(--accent-dark);
+    box-shadow: 0 6px 12px rgba(0, 196, 204, 0.5);
+}
+
+/* Filtros */
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px var(--shadow-light);
+}
+
+.filters input[type="text"],
+.filters select {
+    padding: 12px 18px; /* Más padding */
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 350px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filters input:focus,
+.filters select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+/* --- Cuadrícula de Productos --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px; /* Mayor espacio entre productos */
+}
+
+.product-card {
+    background-color: var(--card-bg);
+    border-radius: 10px; /* Bordes más redondeados */
+    box-shadow: 0 6px 15px var(--shadow-light); /* Sombra más definida */
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-8px); /* Mayor efecto al pasar el mouse */
+    box-shadow: 0 10px 20px var(--shadow-medium);
+}
+
+.product-card img {
+    width: 100%;
+    height: 220px; /* Un poco más alto para imágenes de electrónica */
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color);
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.03); /* Ligero zoom en la imagen al pasar el mouse */
+}
+
+.product-info {
+    padding: 20px; /* Más padding */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.product-info h3 {
+    font-size: 1.5rem; /* Título de producto más grande */
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+
+.product-info p {
+    font-size: 1rem;
+    color: #6c757d; /* Gris más suave para descripción */
+    margin-bottom: 15px;
+    flex-grow: 1;
+    line-height: 1.5;
+}
+
+.product-price {
+    font-size: 1.8rem; /* Precio más grande y llamativo */
+    font-weight: 700;
+    color: var(--accent-color); /* Color de acento para el precio */
+    margin-bottom: 20px;
+    text-align: right; /* Precio alineado a la derecha */
+}
+
+.product-card .btn-primary {
+    width: 100%;
+    margin-top: auto;
+    font-size: 1.1rem; /* Botón de añadir al carrito más grande */
+}
+
+/* --- Carrito de Compras --- */
+#cart-items {
+    margin-bottom: 30px;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px var(--shadow-light);
+    padding: 20px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item img {
+    width: 90px; /* Imagen del carrito un poco más grande */
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.item-details {
+    flex-grow: 1;
+}
+
+.item-details h4 {
+    font-size: 1.3rem; /* Título del ítem del carrito */
+    margin-bottom: 5px;
+    color: var(--text-dark);
+}
+
+.item-details p {
+    font-size: 1.05rem;
+    color: #555;
+}
+
+.item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.item-quantity input {
+    width: 70px; /* Input de cantidad más ancho */
+    padding: 8px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.item-quantity .btn-secondary { /* Botones +/- */
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.remove-item-btn {
+    background: none;
+    border: none;
+    color: var(--error-color);
+    font-size: 1.8rem; /* Icono de eliminar más grande */
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.remove-item-btn:hover {
+    color: #a71d2a;
+    transform: scale(1.1);
+}
+
+.cart-summary {
+    text-align: right;
+    padding-top: 25px; /* Más padding */
+    border-top: 2px solid var(--primary-color); /* Línea más gruesa */
+    margin-top: 20px;
+}
+
+.cart-summary p {
+    font-size: 1.8rem; /* Total más grande */
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+#empty-cart-message {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+}
+
+/* --- Formularios (Registro, Login, Checkout, Edición de Perfil, Admin) --- */
+form {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px var(--shadow-light);
+    max-width: 600px; /* Ancho máximo para formularios */
+    margin: 30px auto; /* Centrar formularios */
+}
+
+form h2 {
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: var(--primary-color);
+    text-align: center;
+}
+form h3 { /* Para subsecciones dentro de formularios */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 25px; /* Más espacio entre campos */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px; /* Más espacio entre label y input */
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 1.05rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="tel"],
+.form-group input[type="number"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 14px; /* Más padding en inputs */
+    border: 1px solid var(--border-color);
+    border-radius: 8px; /* Bordes más redondeados */
+    font-size: 1rem;
+    background-color: var(--background-light); /* Fondo ligeramente gris para inputs */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2); /* Sombra más definida al enfocar */
+}
+
+.form-group small {
+    display: block;
+    margin-top: 8px; /* Más espacio para mensajes pequeños */
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.payment-method {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Más espacio entre radio y label */
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.payment-method input[type="radio"] {
+    width: auto;
+    transform: scale(1.2); /* Radio button un poco más grande */
+    margin-right: 0;
+    accent-color: var(--primary-color); /* Color de acento para radio button */
+}
+.payment-method label {
+    margin-bottom: 0; /* Ajuste para label de radio button */
+    font-weight: normal;
+    cursor: pointer;
+}
+
+/* --- Sección de Administración --- */
+#admin-section h3 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    text-align: left;
+    border-bottom: 2px solid var(--accent-color); /* Separador más vistoso */
+    padding-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+#product-management-list,
+#order-management-list {
+    margin-top: 20px;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px var(--shadow-light);
+    padding: 20px;
+}
+
+.admin-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-item:last-child {
+    border-bottom: none;
+}
+
+.admin-item-details {
+    flex-grow: 1;
+}
+
+.admin-item-details h4 {
+    margin-bottom: 5px;
+    font-size: 1.25rem;
+}
+
+.admin-item-details p {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.admin-actions .btn {
+    padding: 10px 18px; /* Botones admin un poco más grandes */
+    font-size: 0.9rem;
+}
+
+.form-container {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px var(--shadow-light);
+    margin-top: 30px;
+}
+
+.form-container h4 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.8rem; /* Título de formulario admin */
+    text-align: center;
+}
+
+/* --- Mensajes de Alerta/Confirmación --- */
+.message-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.message {
+    background-color: #f0f0f0;
+    border-radius: 8px; /* Bordes más redondeados */
+    padding: 15px 25px; /* Más padding */
+    margin-bottom: 10px;
+    box-shadow: 0 4px 10px var(--shadow-light); /* Sombra más suave */
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Más espacio para iconos/texto */
+    max-width: 400px; /* Más ancho */
+    opacity: 0;
+    transform: translateY(-30px); /* Más desplazamiento inicial */
+    animation: fadeinout 6s forwards; /* Animación un poco más larga */
+    font-weight: 600;
+}
+
+.message.success {
+    background-color: var(--success-color);
+    color: var(--text-light);
+}
+
+.message.error {
+    background-color: var(--error-color);
+    color: var(--text-light);
+}
+
+.message.info { /* Nuevo estilo para mensajes de tipo 'info' */
+    background-color: var(--info-color);
+    color: var(--text-light);
+}
+
+
+@keyframes fadeinout {
+    0% { opacity: 0; transform: translateY(-30px); }
+    10% { opacity: 1; transform: translateY(0); }
+    90% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-30px); }
+}
+
+/* --- Footer --- */
+.main-footer {
+    background-color: var(--background-dark); /* Footer oscuro */
+    color: var(--text-light);
+    padding: 25px 0; /* Más padding */
+    text-align: center;
+    margin-top: auto;
+    box-shadow: 0 -2px 5px var(--shadow-light); /* Sombra superior */
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* Más espacio entre enlaces */
+    margin-top: 15px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.8); /* Ligeramente más opaco */
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--accent-color); /* Acento vibrante al pasar el mouse */
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) { /* Tabletas y pantallas más pequeñas */
+    .hero-banner h2 {
+        font-size: 3rem;
+    }
+    .hero-banner p {
+        font-size: 1.1rem;
+    }
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width: 768px) { /* Móviles y tabletas pequeñas */
+    .main-header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .main-nav ul {
+        margin-top: 15px;
+        justify-content: center;
+        gap: 10px; /* Menos espacio en nav en móviles */
+    }
+
+    .main-nav a {
+        font-size: 0.95rem; /* Letra más pequeña en nav */
+    }
+
+    .auth-buttons {
+        margin-top: 15px;
+        justify-content: center;
+        width: 100%;
+    }
+    .auth-buttons .btn {
+        flex-grow: 1;
+        max-width: 150px;
+    }
+
+    .hero-banner {
+        padding: 60px 20px;
+    }
+    .hero-banner h2 {
+        font-size: 2.5rem;
+    }
+    .hero-banner p {
+        font-size: 1rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .filters {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .filters input[type="text"],
+    .filters select {
+        max-width: 90%;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding-bottom: 20px;
+    }
+
+    .item-quantity {
+        margin-top: 10px;
+        width: 100%; /* Ocupar todo el ancho disponible */
+        justify-content: flex-start;
+    }
+    .item-quantity input {
+        flex-grow: 0;
+    }
+
+    .cart-summary {
+        text-align: center; /* Centrar total en móviles */
+    }
+
+    .admin-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .admin-actions {
+        margin-top: 10px;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    form {
+        padding: 20px;
+    }
+    form h3 {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) { /* Móviles muy pequeños */
+    .logo {
+        font-size: 1.6rem;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .hero-banner h2 {
+        font-size: 2rem;
+    }
+    .hero-banner p {
+        font-size: 0.9rem;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr; /* Una columna en móviles pequeños */
+        gap: 20px;
+    }
+}
+
+/* --- Admin Panel Specific Styles --- */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: var(--card-bg);
+    box-shadow: 0 4px 10px var(--shadow-light);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.admin-table th, .admin-table td {
+    border: 1px solid var(--border-color);
+    padding: 14px 18px; /* Más padding en celdas */
+    text-align: left;
+}
+.admin-table th {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+}
+.admin-table tbody tr:nth-child(even) {
+    background-color: #f8f8f8; /* Un gris muy claro */
+}
+.admin-table tbody tr:hover {
+    background-color: #e3f2fd; /* Azul suave al pasar el mouse */
+}
+.admin-table .btn {
+    padding: 8px 15px;
+    font-size: 0.85rem;
+}
+.text-success { color: var(--success-color); font-weight: bold; }
+.text-danger { color: var(--error-color); font-weight: bold; }
+
+/* Estilos para estados de pedidos */
+.orders-table .status-pending { background-color: #ffe082; } /* Amarillo más cálido */
+.orders-table .status-paid-undispatched { background-color: #a7d9f2; } /* Azul más claro */
+.orders-table .status-dispatched { background-color: #81c784; } /* Verde más vivo */
+.orders-table .status-cancelled { background-color: #ef9a9a; } /* Rojo más suave */
+/* Asegúrate de que el backend envíe "cancelled" en minúsculas o ajusta el nombre de la clase */
+
+
+/* Formulario de añadir/editar producto */
+#product-form-container {
+    max-width: 700px; /* Un poco más ancho */
+    margin: 30px auto;
+}
+
+/* --- Estilos para la Modal (Boleta) --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+    display: flex; /* Cambiado a flex para centrar mejor con JS */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0; /* Para animación de aparición */
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 95%; /* Más adaptable */
+    max-width: 800px; /* Máximo más grande */
+    box-shadow: 0 8px 25px var(--shadow-medium); /* Sombra más pronunciada */
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    position: relative;
+    border-radius: 12px; /* Bordes más redondeados */
+    box-sizing: border-box;
+    transform: translateY(-50px); /* Para el efecto de caída */
+    transition: transform 0.4s ease;
+}
+
+.modal.is-active .modal-content {
+    transform: translateY(0);
+}
+
+/* Animación para que la modal aparezca suavemente */
+@keyframes animatetop {
+    from {transform: translateY(-50px); opacity: 0}
+    to {transform: translateY(0); opacity: 1}
+}
+
+/* Botón de cerrar */
+.close-button {
+    color: #888;
+    font-size: 32px; /* Más grande */
+    font-weight: bold;
+    position: absolute;
+    right: 20px; /* Más margen */
+    top: 15px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--text-dark);
+    text-decoration: none;
+}
+
+/* --- Estilos de la Boleta (Invoice) --- */
+#invoice-content {
+    font-family: 'Roboto', sans-serif; /* Consistencia en la fuente */
+    line-height: 1.8; /* Más espacio entre líneas */
+    color: var(--text-dark);
+}
+
+#invoice-content h2,
+#invoice-content h3 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 25px; /* Más espacio */
+    font-family: 'Montserrat', sans-serif;
+}
+
+#invoice-content h3.invoice-title {
+    font-size: 2.2em; /* Título de boleta más grande */
+    color: var(--accent-color); /* Color de acento */
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+#invoice-content p {
+    margin-bottom: 10px; /* Más espacio */
+    font-size: 1.05rem;
+}
+
+#invoice-content strong {
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+.invoice-section { /* Contenedor para detalles del cliente, fecha etc. */
+    background-color: var(--background-light);
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.05); /* Sombra interna sutil */
+}
+
+.invoice-items-table {
+    margin-top: 30px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+.invoice-items-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 12px 20px;
+    font-weight: bold;
+    border-bottom: 1px solid var(--primary-dark);
+    font-size: 1.05rem;
+}
+
+.invoice-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    transition: background-color 0.2s ease;
+}
+.invoice-item:nth-child(even) {
+    background-color: #fdfdfd; /* Ligeramente diferente para filas pares */
+}
+.invoice-item:hover {
+    background-color: #f0f8ff; /* Azul muy claro al pasar el mouse */
+}
+
+.invoice-item:last-child {
+    border-bottom: none;
+}
+
+.invoice-item span,
+.invoice-items-header span {
+    flex: 1;
+    text-align: left;
+    white-space: nowrap; /* Evita que el texto se rompa */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es muy largo */
+}
+.invoice-items-header .header-name,
+.invoice-item .item-name {
+    flex: 3;
+    min-width: 150px; /* Ancho mínimo para el nombre */
+}
+.invoice-items-header .header-qty,
+.invoice-item .item-quantity {
+    flex: 0.8;
+    text-align: center;
+}
+.invoice-items-header .header-unit-price,
+.invoice-item .item-price {
+    flex: 1.2;
+    text-align: right;
+}
+.invoice-items-header .header-subtotal,
+.invoice-item .item-subtotal {
+    flex: 1.2;
+    text-align: right;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.invoice-total {
+    text-align: right;
+    font-size: 1.8em; /* Total más grande */
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 3px double var(--primary-color); /* Doble línea para el total */
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.thank-you-message {
+    text-align: center;
+    margin-top: 40px;
+    font-style: italic;
+    color: #666;
+    font-size: 1.1em;
+}
+
+/* Estilos para el estado del pedido */
+.order-status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    display: inline-block; /* Para que el padding se aplique correctamente */
+    margin-left: 10px;
+}
+
+.order-status.pagado { background-color: var(--success-color); }
+.order-status.pendiente-de-pago { background-color: var(--accent-color); color: var(--text-dark); }
+.order-status.despachado { background-color: var(--primary-color); }
+.order-status.cancelado { background-color: var(--error-color); }
+
+
+/* Estilos para el botón de imprimir */
+#print-invoice-btn {
+    display: block;
+    margin: 30px auto 0;
+    padding: 15px 30px;
+    background-color: var(--info-color); /* Un azul más claro para imprimir */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#print-invoice-btn:hover {
+    background-color: #117a8b; /* Tono más oscuro de info */
+    transform: translateY(-2px);
+}
+
+/* Ocultar elementos específicos cuando se imprime */
+@media print {
+    /* Ocultar todo lo que no sea la modal-content o la propia modal */
+    body > *:not(.modal):not(.modal-content) {
+        display: none !important;
+    }
+    .modal {
+        position: static;
+        display: block !important;
+        background-color: white !important;
+        margin: 0;
+        padding: 0;
+        width: auto;
+        height: auto;
+        overflow: visible;
+        box-shadow: none;
+        opacity: 1 !important; /* Asegurar visibilidad */
+        visibility: visible !important;
+    }
+    .modal-content {
+        width: auto;
+        max-width: none;
+        box-shadow: none;
+        border: none;
+        margin: 0;
+        padding: 0;
+        animation: none; /* Desactivar animaciones */
+        transform: none; /* Desactivar transformaciones */
+    }
+    .modal .close-button,
+    .modal #print-invoice-btn {
+        display: none !important;
+    }
+    /* Estilos para el layout de impresión */
+    #invoice-content {
+        line-height: 1.4; /* Menos espacio para ahorrar papel */
+        color: #000; /* Texto negro puro para impresión */
+    }
+    #invoice-content p, #invoice-content strong {
+        font-size: 1em;
+    }
+    .invoice-items-table,
+    .invoice-items-header,
+    .invoice-item {
+        border-color: #ccc !important; /* Bordes más claros en impresión */
+        background-color: white !important;
+    }
+    .invoice-total {
+        border-color: #aaa !important;
+        color: #000 !important;
+    }
+}
