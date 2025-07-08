@@ -1,20 +1,17 @@
 // backend/db.js
-const sql = require('mssql/msnodesqlv8');
+const sql = require('mssql');
 require('dotenv').config();
 
 const config = {
     user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
     server: process.env.DB_SERVER,
-    database: process.env.DB_DATABASE, // <- ¡Asegúrate que sea 'hard_discount' aquí!
+    database: process.env.DB_DATABASE, // <- ¡Asegúrate que sea 'hard_discount' aquí!,
+    port: +process.env.DB_PORT,
     options: {
-        instanceName: process.env.DB_INSTANCE_NAME,
+        //instanceName: process.env.DB_INSTANCE_NAME,
         trustServerCertificate: process.env.DB_TRUST_SERVER_CERTIFICATE === 'true',
-        trustedConnection: process.env.DB_TRUST_CONNECTION === 'true',
         encrypt: process.env.DB_ENCRYPT === 'true',
-    },
-    driver: "msnodesqlv8",
-    beforeConnect: (conn) => {
-        conn.conn_str = conn.conn_str.replace("SQL Server Native Client 11.0", "ODBC Driver 17 for SQL Server");
     }
 };
 
