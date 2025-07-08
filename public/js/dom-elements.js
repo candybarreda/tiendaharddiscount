@@ -5,7 +5,7 @@
 // pueda acceder a ellas sin problemas, ya que dom-elements.js es el primero en cargarse.
 
 // URL Base de tu API Backend
-const API_BASE_URL = 'http://localhost:3000/api'; // ¡Asegúrate de que esta URL sea correcta para tu backend!
+const API_BASE_URL = 'https://tiendaharddiscount.onrender.com/api'; // ¡Asegúrate de que esta URL sea correcta para tu backend!
 
 // Variables globales para el usuario y el carrito
 // **NUEVAS DECLARACIONES (o movidas aquí si las tenías en data.js, auth.js, etc.)**
